@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { select } from 'ng2-redux';
-import { CounterActions } from './actions/counter-actions';
-import { CurseActions } from './actions/curse-actions';
 import {Observable} from 'rxjs/Rx'
+import { CounterActions } from './actions/counter-actions';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +11,12 @@ import {Observable} from 'rxjs/Rx'
 export class AppComponent {
   title = 'app works!';
   @select() counter$: Observable<number>;
-  @select() curse$: Observable<number>;
 
-  constructor(private counterActions: CounterActions,private curseActions: CurseActions) {
-    counterActions.increment()
+  constructor(private counterActions: CounterActions) {
+
+  }
+
+  increment(){
+    this.counterActions.increment()
   }
 }

@@ -10,7 +10,6 @@ import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { rootReducer } from '../store/reducers';
 
 import { CounterActions } from './actions/counter-actions';
-import { CurseActions } from './actions/curse-actions';
 
 
 interface IAppState {
@@ -28,7 +27,7 @@ interface IAppState {
     HttpModule,
     NgReduxModule.forRoot()
   ],
-  providers: [CounterActions,CurseActions],
+  providers: [CounterActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {
