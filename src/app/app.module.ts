@@ -4,17 +4,35 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { Counter } from './count.component';
+
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
+import { rootReducer } from '../store/reducers';
+
+import { CounterActions } from './actions/counter-actions';
+import { CurseActions } from './actions/curse-actions';
+
+
+interface IAppState {
+
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Counter
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgReduxModule.forRoot()
   ],
-  providers: [],
+  providers: [CounterActions,CurseActions],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>,devTool: DevToolsExtension) {
+    ngRedux.configureStore(rootReducer, {}, [ ], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
+  }
+}
